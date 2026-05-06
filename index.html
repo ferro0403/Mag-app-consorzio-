@@ -64,7 +64,6 @@
 <input id="importFile" class="hidden" type="file" accept="application/json" onchange="importJson(event)">
 <div id="toast" class="toast"></div>
 <script>
-const APP_VERSION = '2026-05-06-fix-layer-prodotti';
 const ROOM={w:10,d:5}, S=80, OX=60, OY=60; let data={units:[]}; let selectedId=null; let newType='scaffale'; let productTarget=null; let editingProductId=null; let editPos='center'; let mapDrag=null; let prodDrag=null; let saveTimer=null;
 const $=id=>document.getElementById(id); const uid=()=>Date.now()+Math.floor(Math.random()*9999); const clamp=(v,min,max)=>Math.max(min,Math.min(max,v)); const r1=v=>Math.round(v*10)/10;
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._x);t._x=setTimeout(()=>t.classList.remove('show'),1500)}
@@ -124,6 +123,13 @@ document.addEventListener('click',function(e){
 
 window.addEventListener('beforeunload',()=>saveNow(false));
 load();render();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
 </script>
 </body>
 </html>

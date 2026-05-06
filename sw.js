@@ -1,9 +1,9 @@
-const CACHE_NAME = 'magazzino-app-v2026-05-06-fix-layer-prodotti';
+const CACHE_NAME = 'magazzino-app-v-index-caricato-2026-05-06';
 const CORE_FILES = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_FILES)));
   self.skipWaiting();
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_FILES)));
 });
 
 self.addEventListener('activate', event => {
